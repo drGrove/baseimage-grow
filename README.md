@@ -24,6 +24,12 @@ FROM grow/baseimage:latest
 
 It is recommended that you use a image tag like `:0.0.52` instead of the `:latest`.
 
+### Google Cloud Platform service accounts
+
+This image also installs the google-cloud-sdk package, so if you are running on a GCE instance
+with the correct scopes, you can simply run `gcloud` commands and they will automatically
+authenticate with the active service account.
+
 ## Development
 
 Use the following convenience scripts:
