@@ -35,7 +35,7 @@ RUN pip install pyopenssl ndg-httpsclient pyasn1
 RUN pip install grow==0.0.52
 
 # Install the google-cloud-sdk. https://cloud.google.com/sdk/#debubu
-RUN CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" \
+RUN export CLOUD_SDK_REPO=cloud-sdk-`lsb_release -c -s` && \
   echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" \
   | tee /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
