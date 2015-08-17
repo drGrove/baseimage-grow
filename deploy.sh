@@ -2,4 +2,4 @@
 
 set -e
 
-docker push grow/baseimage
+sudo docker push grow/baseimage
