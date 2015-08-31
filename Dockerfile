@@ -20,24 +20,9 @@ RUN apt-get install -y --no-install-recommends \
   libc6 libyaml-dev libffi-dev libxml2-dev libxslt-dev libssl-dev
 RUN apt-get install -y --no-install-recommends git curl ssh
 
-# Install grow pip dependencies.
-RUN pip install --upgrade pip
-RUN pip install --upgrade six
-RUN pip install -U git+http://github.com/bufordtaylor/python-texttable
-
-# Fix some warnings with python2.7 SSL support.
-# https://urllib3.readthedocs.org/en/latest/security.html#pyopenssl
-RUN pip install pyopenssl ndg-httpsclient pyasn1
-
-# Install Grow.
-RUN pip install grow==0.0.55
-
-# Install the google-cloud-sdk. https://cloud.google.com/sdk/#debubu
-RUN export CLOUD_SDK_REPO=cloud-sdk-`lsb_release -c -s` && \
-  echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" \
-  | tee /etc/apt/sources.list.d/google-cloud-sdk.list
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-RUN apt-get update && apt-get install google-cloud-sdk
+ADD grow-install.sh /tmp/grow/
+RUN bash /tmp/grow/grow-install.sh 0.0.54
+RUN ln -s /root/bin/grow /usr/local/bin/grow
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
