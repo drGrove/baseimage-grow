@@ -3,6 +3,6 @@
 set -e
 
 # Also needs to be updated in Dockerfile when changed.
-GROW_VERSION=0.0.52
+GROW_VERSION=0.0.55
 
 docker build -t grow/baseimage:$GROW_VERSION -t grow/baseimage:latest .

@@ -23,8 +23,6 @@ RUN apt-get install -y --no-install-recommends git curl ssh
 # Install grow pip dependencies.
 RUN pip install --upgrade pip
 RUN pip install --upgrade six
-
-# TODO: remove this when upgrading to 0.0.53.
 RUN pip install -U git+http://github.com/bufordtaylor/python-texttable
 
 # Fix some warnings with python2.7 SSL support.
@@ -32,7 +30,7 @@ RUN pip install -U git+http://github.com/bufordtaylor/python-texttable
 RUN pip install pyopenssl ndg-httpsclient pyasn1
 
 # Install Grow.
-RUN pip install grow==0.0.52
+RUN pip install grow==0.0.55
 
 # Install the google-cloud-sdk. https://cloud.google.com/sdk/#debubu
 RUN export CLOUD_SDK_REPO=cloud-sdk-`lsb_release -c -s` && \
